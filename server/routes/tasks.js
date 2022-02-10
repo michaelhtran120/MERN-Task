@@ -1,22 +1,22 @@
 const express = require("express");
 
 const taskRouter = express.Router();
-
+const authenticateMiddleware = require("../middleware/authenticateMiddleware");
 const taskController = require("../controllers/taskController");
 
 //prettier-ignore
 taskRouter
   .route("/")
-  .get(taskController.getTasks)
-  .post(taskController.addTasks)
+  .get(authenticateMiddleware, taskController.getTasks)
+  .post(authenticateMiddleware, taskController.addTasks)
   .put(taskController.updateTasks)
-  .delete(taskController.deleteTasks);
+  .delete(authenticateMiddleware, taskController.deleteTasks);
 
 taskRouter
   .route("/:id")
-  .get(taskController.getTaskId)
+  .get(authenticateMiddleware, taskController.getTaskId)
   .post(taskController.addTaskId)
-  .put(taskController.updateTaskId)
-  .delete(taskController.deleteTaskId);
+  .put(authenticateMiddleware, taskController.updateTaskId)
+  .delete(authenticateMiddleware, taskController.deleteTaskId);
 
 module.exports = taskRouter;

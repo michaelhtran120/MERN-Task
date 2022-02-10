@@ -1,12 +1,13 @@
 const e = require("express");
 const asyncHandler = require("express-async-handler");
 const Task = require("../models/task");
+const User = require("../models/user");
 
 // @route api/tasks
 // @desc Retrieve all tasks
 // @access Private
 const getTasks = asyncHandler(async (req, res) => {
-  const tasks = await Task.find();
+  const tasks = await Task.find({ user: req.user.id });
   res.status(200).json(tasks);
 });
 
@@ -16,10 +17,15 @@ const getTasks = asyncHandler(async (req, res) => {
 const addTasks = asyncHandler(async (req, res, next) => {
   if (!req.body.title) {
     res.statusCode = 400;
-    next(new Error("Missing title"));
+    return next(new Error("Missing title"));
   } else {
-    const task = await Task.create(req.body);
-    res.status(200).json(task);
+    const newTask = {
+      title: req.body.title,
+      description: req.body.description,
+      user: req.user.id,
+    };
+    const task = await Task.create(newTask);
+    res.status(201).json(task);
   }
 });
 
@@ -43,13 +49,23 @@ const deleteTasks = (req, res) => {
 // @desc Retrieve a single task by id
 // @access Private
 const getTaskId = asyncHandler(async (req, res, next) => {
+
   const task = await Task.findById(req.params.id);
+  const user = await User.findById(req.user.id);
+
   if (!task) {
     res.status(400);
-    next(new Error("Task does not exist"));
-  } else {
-    res.status(200).json(task);
+    return next(new Error("Task not found"));
   }
+  if (!user) {
+    res.status(401);
+    return next(new Error("User does not exist"));
+  }
+  if (task.user.toString() !== user.id) {
+    res.status(403);
+    return next(new Error("Task does not belong to this user"));
+  }
+  res.status(200).json(task);
 });
 
 // @route api/tasks/:id
@@ -64,26 +80,46 @@ const addTaskId = (req, res) => {
 // @access Private
 const updateTaskId = asyncHandler(async (req, res, next) => {
   const task = await Task.findById(req.params.id);
+  const user = await User.findById(req.user.id);
+
   if (!task) {
     res.status(400);
-    next(new Error("Task not found"));
-  } else {
-    const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.status(200).json(updatedTask);
+    return next(new Error("Task not found"));
   }
+  if (!user) {
+    res.status(401);
+    return next(new Error("User does not exist"));
+  }
+  if (task.user.toString() !== user.id) {
+    res.status(403);
+    return next(new Error("Task does not belong to this user"));
+  }
+  const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  res.status(200).json(updatedTask);
 });
 
 // @route api/tasks
 // @desc Delete task by id
 // @access Private
 const deleteTaskId = asyncHandler(async (req, res, next) => {
-  const task = await Task.findByIdAndDelete(req.params.id);
+  const task = await Task.findById(req.params.id);
+  const user = await User.findById(req.user.id);
+
   if (!task) {
     res.status(400);
-    next(new Error("task does not exist"));
-  } else {
-    res.status(200).json(task);
+    return next(new Error("Task not found"));
   }
+  if (!user) {
+    res.status(401);
+    return next(new Error("User does not exist"));
+  }
+  if (task.user.toString() !== user.id) {
+    res.status(403);
+    return next(new Error("Task does not belong to this user"));
+  }
+
+  const deletedTask = await Task.findByIdAndDelete(req.params.id);
+  res.status(200).json(deletedTask);
 });
 
 module.exports = {
