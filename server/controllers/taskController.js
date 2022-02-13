@@ -1,4 +1,3 @@
-const e = require("express");
 const asyncHandler = require("express-async-handler");
 const Task = require("../models/task");
 const User = require("../models/user");
@@ -49,7 +48,6 @@ const deleteTasks = (req, res) => {
 // @desc Retrieve a single task by id
 // @access Private
 const getTaskId = asyncHandler(async (req, res, next) => {
-
   const task = await Task.findById(req.params.id);
   const user = await User.findById(req.user.id);
 

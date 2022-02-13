@@ -19,7 +19,10 @@ const taskSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Users"
-    }
+    },
+    category: [{
+      type: String,
+    }]
   },
   {
     timestamps: true,
