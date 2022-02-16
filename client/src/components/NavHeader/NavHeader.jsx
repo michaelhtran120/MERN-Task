@@ -5,6 +5,7 @@ import { logout, reset } from "../../redux/slices/authSlice";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./NavHeader.module.css";
+import MenuButton from "./MenuButton/MenuButton";
 
 function NavHeader() {
   const navigate = useNavigate();
@@ -39,6 +40,12 @@ function NavHeader() {
             <NavLink to="signup">Sign Up</NavLink>
           </>
         )}
+      </nav>
+      <nav className={styles.mobile_nav}>
+        <div className={styles.logo}>
+          <h1>MERN-Task</h1>
+        </div>
+        <MenuButton />
       </nav>
     </header>
   );
