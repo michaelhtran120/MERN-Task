@@ -1,0 +1,63 @@
+.signup_form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+  padding: 25px;
+  border: 1px solid var(--dark);
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 550px) {
+  .signup_form {
+    border: none;
+  }
+}
+
+.signup_form .name_group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+@media screen and (max-width: 550px) {
+  .signup_form .name_group {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.signup_form .name_group input {
+  width: 100%;
+}
+
+.signup_form .name_group .spacer {
+  width: 2rem;
+}
+
+@media screen and (max-width: 550px) {
+  .signup_form .name_group .spacer {
+    display: none;
+  }
+}
+
+.signup_form button {
+  width: 100%;
+  padding: 0.525rem 0.65rem;
+  margin: 15px auto;
+  background-color: var(--dark);
+  color: var(--cream);
+  border-radius: 5px;
+  font-size: 1rem;
+}

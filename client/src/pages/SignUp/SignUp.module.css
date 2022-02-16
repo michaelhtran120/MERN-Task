@@ -1,0 +1,5 @@
+.signup_section h1,
+.signup_section h2 {
+  text-align: center;
+  color: var(--dark);
+}

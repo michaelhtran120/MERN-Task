@@ -1,0 +1,5 @@
+.login_section h1,
+.login_section h2 {
+  text-align: center;
+  color: var(--dark);
+}

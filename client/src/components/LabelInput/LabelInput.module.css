@@ -1,0 +1,17 @@
+.form_group {
+  padding: 0.5rem 0;
+  width: 100%;
+}
+
+.form_group label {
+  display: block;
+  padding-bottom: 0.125rem;
+  font-size: 1rem;
+}
+
+.form_group input {
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+}
