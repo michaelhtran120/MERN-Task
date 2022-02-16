@@ -1,7 +1,10 @@
 // React / Library imports
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+// Component Imports
 import Home from "./pages/Home/Home.jsx";
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import LogIn from "./pages/LogIn/LogIn.jsx";
@@ -24,6 +27,7 @@ function App() {
           <Route path="signup" element={<SignUp />} />
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
     </>
   );
 }

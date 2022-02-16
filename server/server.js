@@ -4,12 +4,15 @@ const taskRouter = require("./routes/tasks");
 const connectDB = require("./config/db");
 const userRouter = require("./routes/users");
 const dotenv = require("dotenv").config();
+const cors = require("cors");
 
 const port = process.env.PORT || 5001;
 
 connectDB();
 
 const app = express();
+
+app.use(cors("*"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
