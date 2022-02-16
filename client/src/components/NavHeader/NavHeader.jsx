@@ -1,10 +1,23 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout, reset } from "../../redux/slices/authSlice";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./NavHeader.module.css";
 
 function NavHeader() {
-  const [user, setUser] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.auth);
+
+  const handleLogOut = () => {
+    dispatch(logout());
+    dispatch(reset());
+    console.log("clicked");
+    navigate("/");
+  };
 
   return (
     <header className={styles.header}>
@@ -18,6 +31,7 @@ function NavHeader() {
         {user ? (
           <>
             <NavLink to="dashboard">Dashboard</NavLink>
+            <p onClick={handleLogOut}>Log Out</p>
           </>
         ) : (
           <>

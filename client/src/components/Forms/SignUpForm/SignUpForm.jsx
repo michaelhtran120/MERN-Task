@@ -33,7 +33,7 @@ function SignUpForm() {
     }
     if (isSuccess || user) {
       navigate("/dashboard");
-      dispatch(reset);
+      dispatch(reset());
     }
   }, [user, error, isSuccess, errorMessage, navigate, dispatch]);
 
