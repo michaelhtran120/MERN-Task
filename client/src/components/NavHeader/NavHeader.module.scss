@@ -11,6 +11,11 @@
 
     a {
       padding: 5px 12px;
+      margin-left: 20px;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
     }
     @media screen and (max-width: 500px) {
       display: none;
@@ -19,8 +24,13 @@
   .right_links {
     display: flex;
     align-items: center;
-    a {
+    a,
+    p {
       padding: 5px 12px;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
     }
     @media screen and (max-width: 500px) {
       display: none;

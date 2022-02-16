@@ -23,6 +23,12 @@
 
 .header .left_links a {
   padding: 5px 12px;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+.header .left_links a:hover {
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 500px) {
@@ -40,8 +46,15 @@
           align-items: center;
 }
 
-.header .right_links a {
+.header .right_links a,
+.header .right_links p {
   padding: 5px 12px;
+  text-decoration: none;
+}
+
+.header .right_links a:hover,
+.header .right_links p:hover {
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 500px) {
