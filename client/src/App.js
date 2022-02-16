@@ -1,8 +1,9 @@
 // React / Library imports
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSelector } from "react-redux";
 
 // Component Imports
 import Home from "./pages/Home/Home.jsx";
@@ -19,17 +20,37 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <NavHeader />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="login" element={<LogIn />} />
-          <Route path="signup" element={<SignUp />} />
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="login" element={<LogIn />} />
+            <Route path="signup" element={<SignUp />} />
+            <Route element={<Protected />}>
+              <Route path="dashboard" element={<Dashboard />} />
+            </Route>
+          </Route>
         </Routes>
       </BrowserRouter>
       <ToastContainer />
     </>
   );
+}
+
+function Layout() {
+  return (
+    <>
+      <NavHeader />
+      <Outlet />
+    </>
+  );
+}
+
+function Protected() {
+  const { user } = useSelector((state) => state.auth);
+  if (!user) {
+    return <Navigate to="login" />;
+  }
+  return <Outlet />;
 }
 
 export default App;
