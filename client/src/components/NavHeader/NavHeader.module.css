@@ -1,12 +1,15 @@
 .header {
   width: 100%;
-  padding: 8px 12px;
+  padding: 0px 24px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .header .left_links {
@@ -16,4 +19,12 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.header .left_links a {
+  padding: 5px 12px;
+}
+
+.header .right_links a {
+  padding: 5px 12px;
 }

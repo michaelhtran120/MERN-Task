@@ -1,15 +1,21 @@
 .header {
   width: 100%;
-  padding: 8px 12px;
+  padding: 0px 24px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   .left_links {
     display: flex;
     align-items: center;
 
-    .logo {
-      
+    a {
+      padding: 5px 12px;
+    }
+  }
+  .right_links {
+    a {
+      padding: 5px 12px;
     }
   }
 }

@@ -15,8 +15,16 @@ function NavHeader() {
         <NavLink to="/">Home</NavLink>
       </nav>
       <nav className={styles.right_links}>
-        <NavLink to="login">Log In</NavLink>
-        <NavLink to="signup">Sign Up</NavLink>
+        {user ? (
+          <>
+            <NavLink to="dashboard">Dashboard</NavLink>
+          </>
+        ) : (
+          <>
+            <NavLink to="login">Log In</NavLink>
+            <NavLink to="signup">Sign Up</NavLink>
+          </>
+        )}
       </nav>
     </header>
   );
