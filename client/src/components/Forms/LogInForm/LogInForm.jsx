@@ -27,7 +27,8 @@ function LogInForm() {
     }
     if (isSuccess || user) {
       navigate("/dashboard");
-      dispatch(reset());
+      // dispatch(reset());
+      console.log(user);
     }
   }, [user, error, isSuccess, errorMessage, navigate, dispatch]);
 
@@ -44,9 +45,12 @@ function LogInForm() {
     };
     dispatch(login(userData));
   };
+  if (isLoading) <h1>Loading....</h1>;
 
   return (
     <>
+      <h1>MERN-Task Manager</h1>
+      <h2>Log In Here!</h2>
       <form onSubmit={onSubmit} className={styles.login_form}>
         <LabelInput label="E-Mail" handleChange={handleChange} inputId="email" type="email" value={inputs.email} required />
         <LabelInput label="Password" handleChange={handleChange} inputId="password" type="password" value={inputs.password} required />

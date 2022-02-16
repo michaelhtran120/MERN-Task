@@ -21,7 +21,7 @@ export const register = createAsyncThunk("auth/register", async (user, thunkAPI)
     if (response.data) {
       localStorage.setItem("user", JSON.stringify(response.data));
     }
-    return response;
+    return response.data;
   } catch (error) {
     const message = (error.response && error.response.data && error.data.message) || error.message || error.toString();
     return thunkAPI.rejectWithValue(message);
@@ -35,7 +35,7 @@ export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
     if (response.data) {
       localStorage.setItem("user", JSON.stringify(response.data));
     }
-    return response;
+    return response.data;
   } catch (error) {
     const message = (error.response && error.response.data && error.data.message) || error.message || error.toString();
     return thunkAPI.rejectWithValue(message);
