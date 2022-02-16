@@ -34,5 +34,52 @@
     @media screen and (min-width: 501px) {
       display: none;
     }
+    .mobile_nav_menu {
+      position: absolute;
+      width: 100%;
+      top: 70px;
+      left: 0px;
+      background-color: var(--dark);
+      list-style: none;
+      z-index: 100;
+      opacity: 0;
+      transform: translateX(-100%);
+      transition: all 0.45s ease-in-out;
+      a,
+      p {
+        display: block;
+        color: var(--white);
+        margin: 25px 0px;
+        font-size: 1.5rem;
+        text-decoration: none;
+        text-align: center;
+      }
+    }
+
+    .mobile_nav_menu_open {
+      position: absolute;
+      width: 100%;
+      top: 70px;
+      left: 0px;
+      background-color: var(--dark);
+      list-style: none;
+      z-index: 100;
+      transform: translateX(0);
+      opacity: 1;
+      transition: all 0.45s ease-in-out;
+      a,
+      p {
+        display: block;
+        color: var(--white);
+        margin: 25px 0px;
+        font-size: 1.5rem;
+        text-decoration: none;
+        text-align: center;
+        transition: all 0.45s ease-in-out;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 }

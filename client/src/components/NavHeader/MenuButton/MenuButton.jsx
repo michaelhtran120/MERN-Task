@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./MenuButton.css";
 
-function MenuButton() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleClick = () => {
-    setIsOpen(!isOpen);
-  };
-
+function MenuButton({ isOpen, handleClick }) {
   return (
     <div className={`hamburger_lines ${isOpen ? "open" : ""}`} onClick={handleClick}>
       <span className="line line1"></span>

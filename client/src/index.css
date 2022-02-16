@@ -2,7 +2,7 @@
   box-sizing: border-box;
 
   /* Variables */
-
+  --white: #fff;
   --cream: #fffdd0;
   --dark: #34515e;
   --red: #ff0000;
