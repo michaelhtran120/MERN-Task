@@ -68,13 +68,45 @@ function SignUpForm() {
       <form onSubmit={onSubmit} className={styles.signup_form}>
         <p className={styles.error_message}>{errorMessage ? errorMessage : ""}</p>
         <div className={styles.name_group}>
-          <LabelInput label="First Name" handleChange={handleChange} inputId="firstName" type="text" value={firstName} required />
+          <LabelInput
+            label="First Name"
+            handleChange={handleChange}
+            inputId="firstName"
+            type="text"
+            value={firstName}
+            required
+            autocomplete="given-name"
+          />
           <div className={styles.spacer} />
-          <LabelInput label="Last Name" handleChange={handleChange} inputId="lastName" type="text" value={lastName} required />
+          <LabelInput
+            label="Last Name"
+            handleChange={handleChange}
+            inputId="lastName"
+            type="text"
+            value={lastName}
+            required
+            autocomplete="family-name"
+          />
         </div>
-        <LabelInput label="E-Mail" handleChange={handleChange} inputId="email" type="email" value={email} required />
-        <LabelInput label="Password" handleChange={handleChange} inputId="password" type="password" value={password} required />
-        <LabelInput label="Confirm Password" handleChange={handleChange} inputId="confirmPassword" type="password" value={confirmPassword} required />
+        <LabelInput label="E-Mail" handleChange={handleChange} inputId="email" type="email" value={email} required autocomplete="email" />
+        <LabelInput
+          label="Password"
+          handleChange={handleChange}
+          inputId="password"
+          type="password"
+          value={password}
+          required
+          autocomplete="new-password"
+        />
+        <LabelInput
+          label="Confirm Password"
+          handleChange={handleChange}
+          inputId="confirmPassword"
+          type="password"
+          value={confirmPassword}
+          required
+          autocomplete="new-password"
+        />
         <button type="submit"> Sign Up</button>
       </form>
     </>

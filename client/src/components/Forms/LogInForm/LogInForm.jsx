@@ -30,7 +30,6 @@ function LogInForm() {
       // resets loading / error message state for user.
       dispatch(reset());
     }
-    console.log(user);
   }, [user, errorMessage, navigate, dispatch]);
 
   const handleChange = (event) => {
@@ -54,8 +53,16 @@ function LogInForm() {
       <h2>Log In Here!</h2>
       <form onSubmit={onSubmit} className={styles.login_form}>
         <p className={styles.error_msg}>{errorMessage ? errorMessage : ""}</p>
-        <LabelInput label="E-Mail" handleChange={handleChange} inputId="email" type="email" value={inputs.email} required />
-        <LabelInput label="Password" handleChange={handleChange} inputId="password" type="password" value={inputs.password} required />
+        <LabelInput label="E-Mail" handleChange={handleChange} inputId="email" type="email" value={inputs.email} required autocomplete="email" />
+        <LabelInput
+          label="Password"
+          handleChange={handleChange}
+          inputId="password"
+          type="password"
+          value={inputs.password}
+          required
+          autocomplete="current-password"
+        />
         <button type="submit"> Log In</button>
       </form>
     </>
