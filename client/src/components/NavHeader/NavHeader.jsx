@@ -29,24 +29,28 @@ function NavHeader() {
 
   return (
     <header className={styles.header}>
-      <nav className={styles.left_links}>
-        <div className={styles.logo}>
-          <h1>MERN-Task</h1>
-        </div>
-        <NavLink to="/">Home</NavLink>
-      </nav>
-      <nav className={styles.right_links}>
-        {user ? (
-          <>
-            <NavLink to="dashboard">Dashboard</NavLink>
-            <p onClick={handleLogOut}>Log Out</p>
-          </>
-        ) : (
-          <>
-            <NavLink to="login">Log In</NavLink>
-            <NavLink to="signup">Sign Up</NavLink>
-          </>
-        )}
+      <nav className={styles.desktop_nav}>
+        <nav className={styles.left_links}>
+          <div className={styles.logo}>
+            <h1>MERN-Task</h1>
+          </div>
+          <NavLink to="/">Home</NavLink>
+        </nav>
+        <nav className={styles.right_links}>
+          {user ? (
+            <>
+              <NavLink to="dashboard">Dashboard</NavLink>
+              <p role="button" onClick={handleLogOut}>
+                Log Out
+              </p>
+            </>
+          ) : (
+            <>
+              <NavLink to="login">Log In</NavLink>
+              <NavLink to="signup">Sign Up</NavLink>
+            </>
+          )}
+        </nav>
       </nav>
       <nav className={styles.mobile_nav}>
         <div className={styles.logo}>
@@ -62,7 +66,9 @@ function NavHeader() {
               <NavLink to="dashboard" onClick={handleMenuButtonClick}>
                 Dashboard
               </NavLink>
-              <p onClick={handleLogOut}>Log Out</p>
+              <p role="button" onClick={handleLogOut}>
+                Log Out
+              </p>
             </>
           ) : (
             <>

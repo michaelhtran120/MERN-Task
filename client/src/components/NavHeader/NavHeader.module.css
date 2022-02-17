@@ -1,6 +1,12 @@
 .header {
   width: 100%;
   padding: 0px 24px;
+  height: 70px;
+  border-bottom: 1px solid var(--dark);
+  font-weight: bold;
+}
+
+.header .desktop_nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -12,55 +18,38 @@
           align-items: center;
 }
 
-.header .left_links {
+.header .desktop_nav .logo {
+  margin-right: 20px;
+}
+
+.header .desktop_nav a,
+.header .desktop_nav p {
+  padding: 5px 12px;
+  text-decoration: none;
+  color: var(--dark);
+  -webkit-transition: all 0.45s ease-in-out;
+  transition: all 0.45s ease-in-out;
+}
+
+.header .desktop_nav a:hover,
+.header .desktop_nav p:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 500px) {
+  .header .desktop_nav {
+    display: none;
+  }
+}
+
+.header .desktop_nav .left_links,
+.header .desktop_nav .right_links {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.header .left_links a {
-  padding: 5px 12px;
-  margin-left: 20px;
-  text-decoration: none;
-}
-
-.header .left_links a:hover {
-  text-decoration: underline;
-}
-
-@media screen and (max-width: 500px) {
-  .header .left_links {
-    display: none;
-  }
-}
-
-.header .right_links {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.header .right_links a,
-.header .right_links p {
-  padding: 5px 12px;
-  text-decoration: none;
-}
-
-.header .right_links a:hover,
-.header .right_links p:hover {
-  text-decoration: underline;
-}
-
-@media screen and (max-width: 500px) {
-  .header .right_links {
-    display: none;
-  }
 }
 
 .header .mobile_nav {
@@ -130,11 +119,4 @@
   font-size: 1.5rem;
   text-decoration: none;
   text-align: center;
-  -webkit-transition: all 0.45s ease-in-out;
-  transition: all 0.45s ease-in-out;
-}
-
-.header .mobile_nav .mobile_nav_menu_open a:hover,
-.header .mobile_nav .mobile_nav_menu_open p:hover {
-  text-decoration: underline;
 }
