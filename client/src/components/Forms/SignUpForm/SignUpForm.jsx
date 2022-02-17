@@ -24,18 +24,19 @@ function SignUpForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { user, isLoading, error, isSuccess, errorMessage } = useSelector((state) => state.auth);
+  const { user, isLoading, errorMessage } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (error) {
+    if (errorMessage) {
       toast.error(errorMessage);
       console.log(errorMessage);
     }
-    if (isSuccess || user) {
+    if (user) {
       navigate("/dashboard");
+      // resets loading / error message state for user.
       dispatch(reset());
     }
-  }, [user, error, isSuccess, errorMessage, navigate, dispatch]);
+  }, [user, errorMessage, navigate, dispatch]);
 
   // Component methods
   const handleChange = (event) => {
@@ -65,6 +66,7 @@ function SignUpForm() {
   return (
     <>
       <form onSubmit={onSubmit} className={styles.signup_form}>
+        <p className={styles.error_message}>{errorMessage ? errorMessage : ""}</p>
         <div className={styles.name_group}>
           <LabelInput label="First Name" handleChange={handleChange} inputId="firstName" type="text" value={firstName} required />
           <div className={styles.spacer} />

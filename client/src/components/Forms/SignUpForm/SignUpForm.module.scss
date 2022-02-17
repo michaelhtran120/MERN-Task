@@ -12,6 +12,10 @@
   @media screen and (max-width: 550px) {
     border: none;
   }
+  .error_message {
+    color: var(--red);
+    text-align: center;
+  }
 
   .name_group {
     display: flex;

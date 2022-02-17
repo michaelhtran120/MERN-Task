@@ -20,6 +20,11 @@
   }
 }
 
+.signup_form .error_message {
+  color: var(--red);
+  text-align: center;
+}
+
 .signup_form .name_group {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -20,6 +20,11 @@
   }
 }
 
+.login_form .error_msg {
+  color: var(--red);
+  text-align: center;
+}
+
 .login_form button {
   width: 100%;
   padding: 0.525rem 0.65rem;
