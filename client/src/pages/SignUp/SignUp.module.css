@@ -1,3 +1,8 @@
+.signup_section {
+  position: relative;
+  height: 85vh;
+}
+
 .signup_section h1,
 .signup_section h2 {
   text-align: center;

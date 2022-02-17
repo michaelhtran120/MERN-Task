@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import LogIn from "./pages/LogIn/LogIn.jsx";
 import SignUp from "./pages/SignUp/SignUp.jsx";
 import NavHeader from "./components/NavHeader/NavHeader.jsx";
+import Footer from "./components/Footer/Footer.jsx";
 
 // Style imports
 
@@ -41,6 +42,7 @@ function Layout() {
     <>
       <NavHeader />
       <Outlet />
+      <Footer />
     </>
   );
 }
