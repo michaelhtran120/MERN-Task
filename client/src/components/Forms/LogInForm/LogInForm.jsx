@@ -21,9 +21,6 @@ function LogInForm() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(user);
-    console.log(errorMessage);
-    console.log(isLoading);
     if (errorMessage) {
       toast.error(errorMessage);
       console.log(errorMessage);
