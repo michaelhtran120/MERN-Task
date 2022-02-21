@@ -1,17 +1,23 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = "/api/tasks/";
+const API_URL = "http://localhost:5001/api/tasks/";
 
 const initialState = {
-  tasks: null,
+  tasks: [],
   isLoading: false,
   errorMessage: "",
 };
 
-export const getTask = createAsyncThunk("task/getTask", async (thunkAPI) => {
+export const getTask = createAsyncThunk("task/getTask", async (_, thunkAPI) => {
   try {
-    const response = await axios.get(`${API_URL}`);
+    const token = thunkAPI.getState().auth.user.token;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const response = await axios.get(API_URL, config);
     console.log(response);
     return response.data;
   } catch (err) {
@@ -20,20 +26,38 @@ export const getTask = createAsyncThunk("task/getTask", async (thunkAPI) => {
   }
 });
 
-export const addTask = createAsyncThunk("task/addTask", async (task, thunkAPI) => {
+export const addTask = createAsyncThunk("task/addTask", async (taskData, thunkAPI) => {
   try {
-    const response = await axios.post(`${API_URL}`, task);
+    const token = thunkAPI.getState().auth.user.token;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const response = await axios.post(API_URL, taskData, config);
     return response.data;
   } catch (err) {
     console.log(err);
+    console.log(err.toJSON());
+    console.log(err.message);
     // return thunkAPI.rejectWithValue(err)
   }
 });
 
-export const deleteTask = createAsyncThunk("task/deleteTask", async(taskId, thunkAPI) => {
+export const deleteTask = createAsyncThunk("task/deleteTask", async (taskId, thunkAPI) => {
   try {
-    const response = await axios.delete(`${API_URL}${taskId}`);
-    console.log(response);
+    const token = thunkAPI.getState().auth.user.token;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const response = await axios.delete(`${API_URL}${taskId}`, config);
+    console.log(response.data);
+    const tasks = thunkAPI.getState().tasks.tasks;
+    console.log(tasks);
+    const filteredTasks = tasks.filter((task) => task._id !== response.data._id);
+    return filteredTasks;
   } catch (err) {
     console.log(err);
     // return thunkAPI.rejectWithValue(err)
@@ -43,7 +67,9 @@ export const deleteTask = createAsyncThunk("task/deleteTask", async(taskId, thun
 export const taskSlice = createSlice({
   name: "task",
   initialState,
-  reducers: {},
+  reducers: {
+    reset: (state) => initialState,
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getTask.pending, (state) => {
@@ -75,6 +101,25 @@ export const taskSlice = createSlice({
         state.isLoading = false;
         state.errorMessage = action.payload;
         return state;
+      })
+      .addCase(deleteTask.pending, (state) => {
+        state.isLoading = true;
+        return state;
+      })
+      .addCase(deleteTask.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = "";
+        state.tasks = action.payload;
+        return state;
+      })
+      .addCase(deleteTask.rejected, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = action.payload;
+        return state;
       });
   },
 });
+
+export default taskSlice.reducer;
+
+export const { reset } = taskSlice.actions;
