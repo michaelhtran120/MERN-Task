@@ -1,7 +1,17 @@
-const User = require("../models/user");
+// Library import
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
+
+// Model import
+const User = require("../models/user");
+
+// NOT A ROUTE - function to generate JWT for users.
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: "30d",
+  });
+};
 
 // @route /api/users/signup
 // @desc  Sign up new users
@@ -91,11 +101,7 @@ const getUser = asyncHandler(async (req, res) => {
   });
 });
 
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: "30d",
-  });
-};
+
 
 module.exports = {
   signupUser,

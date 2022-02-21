@@ -14,9 +14,9 @@ taskRouter
 
 taskRouter
   .route("/:id")
-  .get(authenticateMiddleware, taskController.getTaskId)
-  .post(taskController.addTaskId)
-  .put(authenticateMiddleware, taskController.updateTaskId)
-  .delete(authenticateMiddleware, taskController.deleteTaskId);
+  .get(authenticateMiddleware, taskController.getTaskById)
+  .post(taskController.addTaskById)
+  .put(authenticateMiddleware, taskController.updateTaskById)
+  .delete(authenticateMiddleware, taskController.deleteTaskById);
 
 module.exports = taskRouter;

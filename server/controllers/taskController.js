@@ -47,19 +47,15 @@ const deleteTasks = (req, res) => {
 // @route api/tasks/:id
 // @desc Retrieve a single task by id
 // @access Private
-const getTaskId = asyncHandler(async (req, res, next) => {
+const getTaskById = asyncHandler(async (req, res, next) => {
   const task = await Task.findById(req.params.id);
   const user = await User.findById(req.user.id);
 
   if (!task) {
     res.status(400);
     return next(new Error("Task not found"));
-  }
-  if (!user) {
-    res.status(401);
-    return next(new Error("User does not exist"));
-  }
-  if (task.user.toString() !== user.id) {
+  } 
+  if (task.user.toString() !== req.user.id) {
     res.status(403);
     return next(new Error("Task does not belong to this user"));
   }
@@ -69,14 +65,14 @@ const getTaskId = asyncHandler(async (req, res, next) => {
 // @route api/tasks/:id
 // @desc POST request not allowed.
 // @access Private
-const addTaskId = (req, res) => {
+const addTaskById = (req, res) => {
   res.status(405).json({ message: `POST request not allowed on id: ${req.params.id}` });
 };
 
 // @route api/tasks/:id
 // @desc Updating a single task by id
 // @access Private
-const updateTaskId = asyncHandler(async (req, res, next) => {
+const updateTaskById = asyncHandler(async (req, res, next) => {
   const task = await Task.findById(req.params.id);
   const user = await User.findById(req.user.id);
 
@@ -99,7 +95,7 @@ const updateTaskId = asyncHandler(async (req, res, next) => {
 // @route api/tasks
 // @desc Delete task by id
 // @access Private
-const deleteTaskId = asyncHandler(async (req, res, next) => {
+const deleteTaskById = asyncHandler(async (req, res, next) => {
   const task = await Task.findById(req.params.id);
   const user = await User.findById(req.user.id);
 
@@ -125,8 +121,8 @@ module.exports = {
   addTasks,
   updateTasks,
   deleteTasks,
-  getTaskId,
-  addTaskId,
-  updateTaskId,
-  deleteTaskId,
+  getTaskById,
+  addTaskById,
+  updateTaskById,
+  deleteTaskById,
 };

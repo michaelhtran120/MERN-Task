@@ -1,13 +1,19 @@
+// Library imports
 const express = require("express");
-const { errorHandler } = require("./middleware/errorHandlerMiddleware");
-const taskRouter = require("./routes/tasks");
-const connectDB = require("./config/db");
-const userRouter = require("./routes/users");
-const dotenv = require("dotenv").config();
 const cors = require("cors");
+const dotenv = require("dotenv").config();
+
+// Custom imports
+const { errorHandler } = require("./middleware/errorHandlerMiddleware");
+const connectDB = require("./config/db");
+
+// Route imports
+const taskRouter = require("./routes/tasks");
+const userRouter = require("./routes/users");
 
 const port = process.env.PORT || 5001;
 
+// Connect to MongoDB Atlas.
 connectDB();
 
 const app = express();
