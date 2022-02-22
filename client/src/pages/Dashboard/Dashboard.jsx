@@ -36,7 +36,7 @@ function Dashboard() {
       return <h4>You currently have no tasks. Please fill out the above form</h4>;
     }
     return taskArr.map((task) => {
-      return <Task taskData={task} />;
+      return <Task key={task._id} taskData={task} />;
     });
   };
 

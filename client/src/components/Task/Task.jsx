@@ -21,7 +21,7 @@ function Task({ taskData }) {
   };
 
   return (
-    <div key={taskData._id} className={styles.task_container}>
+    <div className={styles.task_container}>
       <div>
         <h3>{taskData.title}</h3>
         <p>{taskData.description}</p>
