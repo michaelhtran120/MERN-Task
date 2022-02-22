@@ -1,18 +1,26 @@
+// React & Library Imports
 import React from "react";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
+// Component Imports
 import TaskForm from "../../components/Forms/TaskForm/TaskForm";
-import { getTask, deleteTask } from "../../redux/slices/taskSlice";
+import Task from "../../components/Task/Task";
+
+// Redux Imports
+import { getTask } from "../../redux/slices/taskSlice";
+
+// Style Imports
+import styles from "./Dashboard.module.css";
 
 function Dashboard() {
   const { user } = useSelector((state) => state.auth);
-  const { tasks, isLoading, errorMessage } = useSelector((state) => state.tasks);
+  const { tasks, errorMessage } = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(user);
     console.log(tasks);
-  }, [user, tasks]);
+  }, [tasks]);
 
   useEffect(() => {
     dispatch(getTask());
@@ -24,38 +32,26 @@ function Dashboard() {
   //   return <h1>Loading....</h1>;
   // }
   const renderTasks = (taskArr) => {
-
-    const handleDelete = (id) => {
-      console.log("deleting");
-      dispatch(deleteTask(id));
-    };
-
     if (taskArr.length === 0) {
-      return <h3>You currently have no tasks.</h3>;
+      return <h4>You currently have no tasks. Please fill out the above form</h4>;
     }
     return taskArr.map((task) => {
-      return (
-        <div key={task._id}>
-          <p>{task.title}</p>
-          <p>{task.description}</p>
-          <button onClick={() => handleDelete(task._id)}>Delete</button>
-        </div>
-      );
+      return <Task taskData={task} />;
     });
   };
 
   return (
-    <div>
+    <section className={styles.dashboard}>
       <h1>
-        Hello {firstName} {lastName}
+        Welcome {firstName} {lastName}!
       </h1>
+      <h4>Below are your tasks, add, change, delete!</h4>
       <div>
-        TASKSSS
         <TaskForm />
         {renderTasks(tasks)}
         {errorMessage && <p>{errorMessage}</p>}
       </div>
-    </div>
+    </section>
   );
 }
 

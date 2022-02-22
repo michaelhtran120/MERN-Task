@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTask } from "../../../redux/slices/taskSlice";
 
+import styles from "./TaskForm.module.css"
+
 // Component Imports
 import LabelInput from "../../LabelInput/LabelInput";
 
@@ -29,11 +31,9 @@ function TaskForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.task_form}>
       <LabelInput inputId="title" label="Title" value={inputs.title} handleChange={handleChange} type="text" required autocomplete="off" />
       <LabelInput inputId="description" label="Description" value={inputs.description} handleChange={handleChange} type="text" required />
-      {/* <label>Description</label>
-      <textarea></textarea> */}
       <button type="submit">Add Task</button>
     </form>
   );
