@@ -28,7 +28,7 @@ function Task({ taskData }) {
     return <h1>Task being edit</h1>;
   } else {
     return (
-      <div className={styles.task_container}>
+      <div className={`${styles.task_container} ${taskData.completed && styles.completed}`}>
         <div>
           <h3>{taskData.title}</h3>
           <p>{taskData.description}</p>
