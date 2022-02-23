@@ -8,12 +8,13 @@ import styles from "./TaskForm.module.css";
 // Component Imports
 import LabelInput from "../../LabelInput/LabelInput";
 import { useEffect } from "react";
+import { dateFormatter } from "../../../Utils/dateFormatter";
 
 function TaskForm() {
   const [inputs, setInputs] = useState({
     title: "",
     description: "",
-    dueDate: new Date(),
+    dueDate: dateFormatter(),
   });
 
   const dispatch = useDispatch();
