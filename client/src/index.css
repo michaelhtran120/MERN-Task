@@ -20,3 +20,21 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+button.primary {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  color: var(--white);
+  background-color: var(--dark);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.45s ease-in-out;
+}
+
+button.primary:hover {
+  background-color: var(--green);
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: var(--white);
+  transform: translateY(-3px);
+}

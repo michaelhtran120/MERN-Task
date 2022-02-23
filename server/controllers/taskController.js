@@ -21,6 +21,7 @@ const addTasks = asyncHandler(async (req, res, next) => {
     const newTask = {
       title: req.body.title,
       description: req.body.description,
+      dueDate: req.body.dueDate,
       user: req.user.id,
     };
     const task = await Task.create(newTask);
