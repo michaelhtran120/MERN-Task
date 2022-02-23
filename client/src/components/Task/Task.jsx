@@ -1,9 +1,9 @@
 // React & Library imports
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 // Redux action imports
-import { deleteTask } from "../../redux/slices/taskSlice";
+import { deleteTask, toggleTaskComplete } from "../../redux/slices/taskSlice";
 
 // Styles import
 import styles from "./Task.module.css";
@@ -16,8 +16,10 @@ function Task({ taskData }) {
     dispatch(deleteTask(id));
   };
 
-  const handleCheckbox = (task) => {
-    console.log(task);
+  const toggleComplete = (taskData) => {
+    console.log(taskData);
+
+    dispatch(toggleTaskComplete(taskData));
   };
 
   return (
@@ -26,7 +28,7 @@ function Task({ taskData }) {
         <h3>{taskData.title}</h3>
         <p>{taskData.description}</p>
         <p>Due Date: </p>
-        <input type="checkbox" checked={taskData.completed} onChange={() => handleCheckbox(taskData)} />
+        <input type="checkbox" checked={taskData.completed} onChange={() => toggleComplete(taskData)} />
         <label>completed?</label>
       </div>
       <button onClick={() => handleDelete(taskData._id)}>X</button>
@@ -34,4 +36,4 @@ function Task({ taskData }) {
   );
 }
 
-export default Task;
+export const MemoizedTask = React.memo(Task);

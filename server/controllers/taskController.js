@@ -54,7 +54,7 @@ const getTaskById = asyncHandler(async (req, res, next) => {
   if (!task) {
     res.status(400);
     return next(new Error("Task not found"));
-  } 
+  }
   if (task.user.toString() !== req.user.id) {
     res.status(403);
     return next(new Error("Task does not belong to this user"));
@@ -89,7 +89,8 @@ const updateTaskById = asyncHandler(async (req, res, next) => {
     return next(new Error("Task does not belong to this user"));
   }
   const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
-  res.status(200).json(updatedTask);
+  const allTask = await Task.find();
+  res.status(200).json(allTask);
 });
 
 // @route api/tasks
