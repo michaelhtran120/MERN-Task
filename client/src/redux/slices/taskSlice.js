@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { sortByCreated, sortByUpdated } from "./taskHelper";
+
+import { sortByCreated, sortByUpdated } from "../../Utils/sortingHelper";
 
 const API_URL = "http://localhost:5001/api/tasks/";
 
