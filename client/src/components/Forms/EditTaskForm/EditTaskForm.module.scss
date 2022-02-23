@@ -1,0 +1,16 @@
+.edit_task_form {
+  position: relative;
+  text-align: start;
+  width: 100%;
+  max-width: 800px;
+  background-color: white;
+  @media screen and (max-width: 400px) {
+    width: 100%;
+  }
+
+  // .button_container {
+  //   margin-top: 20px;
+  //   display: flex;
+  //   justify-content: space-between;
+  // }
+}

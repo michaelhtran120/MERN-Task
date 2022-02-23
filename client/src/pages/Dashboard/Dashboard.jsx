@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // Component Imports
-import TaskForm from "../../components/Forms/TaskForm/TaskForm";
+import TaskForm from "../../components/Forms/AddTaskForm/TaskForm";
 import { renderTasks } from "../../components/Task/Task";
 
 // Redux Imports
@@ -41,7 +41,7 @@ function Dashboard() {
             Sort by updated date
           </button>
         </div>
-        {isLoading ? <p>Loading...</p> : renderTasks(tasks)}
+        {isLoading ? null : renderTasks(tasks)}
         {errorMessage && <p>{errorMessage}</p>}
       </div>
     </section>

@@ -3,7 +3,7 @@ import { dateFormatter } from "../../Utils/dateFormatter";
 
 import styles from "./LabelInput.module.css";
 
-function LabelInput({ inputId, label, value, handleChange, type, required = false, autocomplete = null }) {
+function LabelInput({ inputId, label, value, handleChange, type, required = false, autocomplete = "false" }) {
   if (type === "date") {
     return (
       <div className={styles.form_group_date}>
