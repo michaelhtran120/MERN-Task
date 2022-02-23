@@ -24,10 +24,6 @@ function TaskForm() {
     setInputs((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  useEffect(() => {
-    console.log(inputs);
-  }, [inputs]);
-
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(addTask(inputs));

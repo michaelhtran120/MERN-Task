@@ -15,3 +15,27 @@
   font-size: 1rem;
   padding: 0.5rem 0.75rem;
 }
+
+.form_group_date {
+  padding: 0.5rem 0;
+  width: 50%;
+}
+
+@media screen and (max-width: 400px) {
+  .form_group_date {
+    width: 100%;
+  }
+}
+
+.form_group_date label {
+  display: block;
+  padding-bottom: 0.125rem;
+  font-size: 1rem;
+}
+
+.form_group_date input {
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+}
