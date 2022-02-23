@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 // Component Imports
 import TaskForm from "../../components/Forms/TaskForm/TaskForm";
-import { MemoizedTask } from "../../components/Task/Task";
+import { renderTasks } from "../../components/Task/Task";
 
 // Redux Imports
 import { getTask, sortByCreatedDate, sortByUpdatedDate } from "../../redux/slices/taskSlice";
@@ -25,17 +25,6 @@ function Dashboard() {
 
   const { firstName, lastName } = user;
 
-  const renderTasks = (taskArr) => {
-    if (taskArr.length === 0) {
-      return <h4>You currently have no tasks. Please fill out the above form</h4>;
-    }
-    return taskArr.map((task) => {
-      if (task) {
-        return <MemoizedTask key={task._id} taskData={task} />;
-      }
-    });
-  };
-
   return (
     <section className={styles.dashboard}>
       <h1>
@@ -44,8 +33,14 @@ function Dashboard() {
       <h4>Below are your tasks. Add a new task, change existing task or delete!</h4>
       <div>
         <TaskForm />
-        <button onClick={() => dispatch(sortByCreatedDate())}>Sort by created date</button>
-        <button onClick={() => dispatch(sortByUpdatedDate())}>Sort by updated date</button>
+        <div className={styles.button_container}>
+          <button className="primary" onClick={() => dispatch(sortByCreatedDate())}>
+            Sort by created date
+          </button>
+          <button className="primary" onClick={() => dispatch(sortByUpdatedDate())}>
+            Sort by updated date
+          </button>
+        </div>
         {isLoading ? <p>Loading...</p> : renderTasks(tasks)}
         {errorMessage && <p>{errorMessage}</p>}
       </div>

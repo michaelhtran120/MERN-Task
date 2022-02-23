@@ -3,4 +3,13 @@
   h4 {
     text-align: center;
   }
+  .button_container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+
+    button {
+      margin:10px;
+    }
+  }
 }
