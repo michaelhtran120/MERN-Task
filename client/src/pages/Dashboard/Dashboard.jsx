@@ -1,6 +1,6 @@
 // React & Library Imports
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // Component Imports
@@ -8,7 +8,7 @@ import TaskForm from "../../components/Forms/TaskForm/TaskForm";
 import { MemoizedTask } from "../../components/Task/Task";
 
 // Redux Imports
-import { getTask } from "../../redux/slices/taskSlice";
+import { getTask, sortByCreatedDate, sortByUpdatedDate } from "../../redux/slices/taskSlice";
 
 // Style Imports
 import styles from "./Dashboard.module.css";
@@ -17,32 +17,13 @@ function Dashboard() {
   const { user } = useSelector((state) => state.auth);
   const { tasks, isLoading, errorMessage } = useSelector((state) => state.tasks);
 
-  const [sortedTasks, setSortedTasks] = useState(tasks);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTask())
-      .unwrap()
-      .then((response) => {
-        setSortedTasks(response);
-      });
+    dispatch(getTask());
   }, [dispatch]);
 
   const { firstName, lastName } = user;
-
-  // const sortByUpdatedDate = (tasks) => {
-  //   const sortedTasks = [...tasks];
-  //   sortedTasks.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
-  //   return sortedTasks;
-  // };
-  // useEffect(() => {
-  //   console.log(sortByUpdatedDate(tasks));
-  // }, [tasks]);
-
-  useEffect(() => {
-    console.log(sortedTasks);
-  }, [sortedTasks]);
 
   const renderTasks = (taskArr) => {
     if (taskArr.length === 0) {
@@ -63,7 +44,9 @@ function Dashboard() {
       <h4>Below are your tasks. Add a new task, change existing task or delete!</h4>
       <div>
         <TaskForm />
-        {isLoading ? <p>Loading...</p> : renderTasks(sortedTasks)}
+        <button onClick={() => dispatch(sortByCreatedDate())}>Sort by created date</button>
+        <button onClick={() => dispatch(sortByUpdatedDate())}>Sort by updated date</button>
+        {isLoading ? <p>Loading...</p> : renderTasks(tasks)}
         {errorMessage && <p>{errorMessage}</p>}
       </div>
     </section>

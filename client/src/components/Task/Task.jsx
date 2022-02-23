@@ -17,8 +17,6 @@ function Task({ taskData }) {
   };
 
   const toggleComplete = (taskData) => {
-    console.log(taskData);
-
     dispatch(toggleTaskComplete(taskData));
   };
 
