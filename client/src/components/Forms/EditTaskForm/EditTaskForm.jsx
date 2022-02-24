@@ -1,4 +1,12 @@
+// React & Lib import
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+
+// Redux Slice/Action import
+import { updateTask } from "../../../redux/slices/taskSlice";
+import { dateFormatter } from "../../../Utils/dateFormatter";
+
+// Component import
 import LabelInput from "../../LabelInput/LabelInput";
 
 // styles import
@@ -8,8 +16,10 @@ function EditTaskForm({ taskData, handleCloseModal }) {
   const [inputs, setInputs] = useState({
     title: taskData.title,
     description: taskData.description,
-    dueDate: taskData.dueDate,
+    dueDate: taskData.dueDate ? dateFormatter(taskData.dueDate) : "",
   });
+
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -18,6 +28,12 @@ function EditTaskForm({ taskData, handleCloseModal }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    let updatedData = {
+      ...inputs,
+      _id: taskData._id,
+    };
+    console.log(updatedData);
+    // dispatch(updateTask(updatedData))
   };
 
   return (

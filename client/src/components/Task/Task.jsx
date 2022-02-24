@@ -33,6 +33,7 @@ function Task({ taskData }) {
   const handleOpenModal = () => {
     console.log("open");
     setIsModalOpen(true);
+    console.log(taskData.dueDate);
     document.body.style.overflow = "hidden";
   };
   const handleCloseModal = () => {
@@ -61,7 +62,6 @@ function Task({ taskData }) {
         </button>
       </div>
       <EditTaskModal taskData={taskData} isModalOpen={isModalOpen} handleCloseModal={handleCloseModal} />
-
     </>
   );
 }

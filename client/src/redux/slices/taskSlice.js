@@ -79,6 +79,22 @@ export const toggleTaskComplete = createAsyncThunk("task/toggleTaskComplete", as
   }
 });
 
+export const updateTask = createAsyncThunk("task/updateTask", async(taskData, thunkAPI)=>{
+  try {
+    const token = thunkAPI.getState().auth.user.token;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const response = axios.put(`${API_URL}${taskData._id}`, taskData, config);
+    console.log(response);
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 export const deleteTask = createAsyncThunk("task/deleteTask", async (taskId, thunkAPI) => {
   try {
     const token = thunkAPI.getState().auth.user.token;
