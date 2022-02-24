@@ -11,3 +11,17 @@
     width: 100%;
   }
 }
+
+.edit_task_form .button_container {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.edit_task_form .button_container :nth-child(2) {
+  margin: 0 20px;
+}

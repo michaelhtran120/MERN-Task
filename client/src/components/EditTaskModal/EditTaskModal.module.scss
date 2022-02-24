@@ -1,4 +1,22 @@
-.edit_task_modal {
+.modal_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  max-width: 900px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+
+  .edit_task_modal {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 700px;
+    padding: 25px;
+    background-color: var(--white);
+  }
 }

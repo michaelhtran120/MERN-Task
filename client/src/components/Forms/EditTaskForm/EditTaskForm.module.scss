@@ -8,9 +8,13 @@
     width: 100%;
   }
 
-  // .button_container {
-  //   margin-top: 20px;
-  //   display: flex;
-  //   justify-content: space-between;
-  // }
+  .button_container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+
+    :nth-child(2) {
+      margin: 0 20px;
+    }
+  }
 }
