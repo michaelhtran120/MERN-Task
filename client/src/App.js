@@ -12,6 +12,7 @@ import LogIn from "./pages/LogIn/LogIn.jsx";
 import SignUp from "./pages/SignUp/SignUp.jsx";
 import NavHeader from "./components/NavHeader/NavHeader.jsx";
 import Footer from "./components/Footer/Footer.jsx";
+import NotFound from "./pages/NotFound/NotFound.jsx";
 
 // Style imports
 
@@ -29,6 +30,7 @@ function App() {
             <Route element={<Protected />}>
               <Route path="dashboard" element={<Dashboard />} />
             </Route>
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>
