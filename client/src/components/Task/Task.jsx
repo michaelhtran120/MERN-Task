@@ -1,9 +1,9 @@
 // React & Library imports
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import Modal from "react-modal";
 
 // Component Imports
-import { Modal } from "../Modal/Modal";
 
 // Redux action imports
 import { deleteTask, toggleTaskComplete } from "../../redux/slices/taskSlice";
@@ -13,10 +13,14 @@ import styles from "./Task.module.css";
 
 // Helper imports
 import { dateFormatter } from "../../Utils/dateFormatter";
-
+import EditTaskForm from "../Forms/EditTaskForm/EditTaskForm";
+import EditTaskModal from "../EditTaskModal/EditTaskModal";
 
 function Task({ taskData }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
+
+  Modal.setAppElement("#root");
 
   const handleDelete = (id) => {
     console.log("deleting");
@@ -25,6 +29,16 @@ function Task({ taskData }) {
 
   const toggleComplete = (taskData) => {
     dispatch(toggleTaskComplete(taskData));
+  };
+
+  const handleOpenModal = () => {
+    console.log("open");
+    setIsModalOpen(true);
+    document.body.style.overflow = "hidden";
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    document.body.style.overflow = "scroll";
   };
 
   return (
@@ -43,10 +57,14 @@ function Task({ taskData }) {
         <button onClick={() => handleDelete(taskData._id)} className={styles.delete_button}>
           X
         </button>
-        <button onClick={() => Modal(taskData)} className={`${styles.edit_button} primary`}>
+        <button onClick={() => handleOpenModal()} className={`${styles.edit_button} primary`}>
           Edit
         </button>
       </div>
+      <EditTaskModal taskData={taskData} isModalOpen={isModalOpen} handleCloseModal={handleCloseModal} />
+      {/* <Modal isOpen={isModalOpen}>
+        <EditTaskForm taskData={taskData} handleCloseModal={handleCloseModal} />
+      </Modal> */}
     </>
   );
 }
