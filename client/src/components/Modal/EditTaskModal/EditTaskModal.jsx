@@ -3,7 +3,7 @@ import React from "react";
 import Modal from "react-modal";
 
 // Component imports
-import EditTaskForm from "../Forms/EditTaskForm/EditTaskForm";
+import EditTaskForm from "../../Forms/EditTaskForm/EditTaskForm";
 
 // Style imports
 import styles from "./EditTaskModal.module.css";

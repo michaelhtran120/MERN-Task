@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import Modal from "react-modal";
 
 // Component Imports
+import EditTaskModal from "../Modal/EditTaskModal/EditTaskModal";
 
 // Redux action imports
 import { deleteTask, toggleTaskComplete } from "../../redux/slices/taskSlice";
@@ -13,8 +14,6 @@ import styles from "./Task.module.css";
 
 // Helper imports
 import { dateFormatter } from "../../Utils/dateFormatter";
-import EditTaskForm from "../Forms/EditTaskForm/EditTaskForm";
-import EditTaskModal from "../EditTaskModal/EditTaskModal";
 
 function Task({ taskData }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -62,9 +61,7 @@ function Task({ taskData }) {
         </button>
       </div>
       <EditTaskModal taskData={taskData} isModalOpen={isModalOpen} handleCloseModal={handleCloseModal} />
-      {/* <Modal isOpen={isModalOpen}>
-        <EditTaskForm taskData={taskData} handleCloseModal={handleCloseModal} />
-      </Modal> */}
+
     </>
   );
 }
