@@ -5,6 +5,8 @@
   border-bottom: 1px solid var(--dark);
   font-weight: bold;
   .desktop_nav {
+    max-width: 1000px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
