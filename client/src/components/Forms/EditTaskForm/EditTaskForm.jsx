@@ -28,6 +28,7 @@ function EditTaskForm({ taskData, handleCloseModal }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    handleCloseModal();
     let updatedData = {
       ...inputs,
       _id: taskData._id,

@@ -46,7 +46,9 @@ function Task({ taskData }) {
       <div className={`${styles.task_container} ${taskData.completed && styles.completed}`}>
         <div>
           <h3>{taskData.title}</h3>
+          <hr/>
           <p>{taskData.description}</p>
+          <hr/>
           <p>
             <strong>Due Date: </strong>
             {taskData.dueDate ? dateFormatter(taskData.dueDate) : "No due date"}
