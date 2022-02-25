@@ -1,5 +1,15 @@
 .task_container {
   position: relative;
+  width: 90%;
+  max-width: 650px;
+  margin: 5px auto;
+  padding: 0px 15px 15px 15px;
+  border: 1px solid var(--dark);
+  border-radius: 5px;
+}
+
+.task_container .task_header {
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -9,30 +19,20 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 90%;
-  max-width: 650px;
-  margin: 5px auto;
-  padding: 0px 15px 15px 15px;
-  border: 1px solid var(--dark);
-  border-radius: 5px;
 }
 
-.task_container .delete_button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: var(--red);
-  color: white;
-  border: none;
-  padding: 6px 8px;
-  border-radius: 5px;
-  cursor: pointer;
+.task_container .task_header h3 {
+  max-width: 70%;
+}
+
+.task_container .task_header .due_date {
+  min-width: 25%;
 }
 
 .task_container .edit_button {
   position: absolute;
   right: 10px;
-  bottom: 10px;
+  bottom: 5px;
 }
 
 .completed {

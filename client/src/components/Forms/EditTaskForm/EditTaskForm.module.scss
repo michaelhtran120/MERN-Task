@@ -17,4 +17,21 @@
       margin: 0 20px;
     }
   }
+
+  .delete_button {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    background-color: var(--red);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.45s ease-in-out;
+    &:hover {
+      transform: scale(1.2);
+      background-color: darken(#ff0000, 10%);
+    }
+  }
 }

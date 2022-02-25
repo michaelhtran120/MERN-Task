@@ -25,3 +25,23 @@
 .edit_task_form .button_container :nth-child(2) {
   margin: 0 20px;
 }
+
+.edit_task_form .delete_button {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+  background-color: var(--red);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  -webkit-transition: all 0.45s ease-in-out;
+  transition: all 0.45s ease-in-out;
+}
+
+.edit_task_form .delete_button:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  background-color: #cc0000;
+}

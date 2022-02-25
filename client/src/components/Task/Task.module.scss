@@ -1,8 +1,5 @@
 .task_container {
   position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 90%;
   max-width: 650px;
   margin: 5px auto;
@@ -10,22 +7,24 @@
   border: 1px solid var(--dark);
   border-radius: 5px;
 
-  .delete_button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: var(--red);
-    color: white;
-    border: none;
-    padding: 6px 8px;
-    border-radius: 5px;
-    cursor: pointer;
+  .task_header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h3 {
+      max-width: 70%;
+    }
+
+    .due_date {
+      min-width: 25%;
+    }
   }
 
   .edit_button {
     position: absolute;
     right: 10px;
-    bottom: 10px;
+    bottom: 5px;
   }
 }
 .completed {

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 // Redux Slice/Action import
-import { updateTask } from "../../../redux/slices/taskSlice";
+import { updateTask, deleteTask } from "../../../redux/slices/taskSlice";
 import { dateFormatter } from "../../../Utils/dateFormatter";
 
 // Component import
@@ -37,6 +37,15 @@ function EditTaskForm({ taskData, handleCloseModal }) {
     dispatch(updateTask(updatedData));
   };
 
+  const handleDelete = (id) => {
+    let response = window.confirm("Are you sure you want to delete?");
+    console.log("deleting", response);
+    if (response) {
+      handleCloseModal();
+      dispatch(deleteTask(id));
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit} className={styles.edit_task_form}>
       <LabelInput inputId="title" label="Title" value={inputs.title} handleChange={handleChange} type="text" required autocomplete="off" />
@@ -50,6 +59,9 @@ function EditTaskForm({ taskData, handleCloseModal }) {
           Cancel
         </button>
       </div>
+      <button type="button" className={styles.delete_button} onClick={() => handleDelete(taskData._id)}>
+        Delete
+      </button>
     </form>
   );
 }

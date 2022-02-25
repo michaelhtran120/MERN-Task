@@ -7,7 +7,7 @@ import Modal from "react-modal";
 import EditTaskModal from "../Modal/EditTaskModal/EditTaskModal";
 
 // Redux action imports
-import { deleteTask, toggleTaskComplete } from "../../redux/slices/taskSlice";
+import { toggleTaskComplete } from "../../redux/slices/taskSlice";
 
 // Styles import
 import styles from "./Task.module.css";
@@ -20,11 +20,6 @@ function Task({ taskData }) {
   const dispatch = useDispatch();
 
   Modal.setAppElement("#root");
-
-  const handleDelete = (id) => {
-    console.log("deleting");
-    dispatch(deleteTask(id));
-  };
 
   const toggleComplete = (taskData) => {
     dispatch(toggleTaskComplete(taskData));
@@ -45,20 +40,20 @@ function Task({ taskData }) {
     <>
       <div className={`${styles.task_container} ${taskData.completed && styles.completed}`}>
         <div>
-          <h3>{taskData.title}</h3>
-          <hr/>
-          <p>{taskData.description}</p>
-          <hr/>
-          <p>
-            <strong>Due Date: </strong>
+          <header className={styles.task_header}>
+            <h3>{taskData.title}</h3>
+            <span className={styles.due_date}>
+            <strong>Due: </strong>
             {taskData.dueDate ? dateFormatter(taskData.dueDate) : "No due date"}
-          </p>
+          </span> 
+          </header>
+          <hr />
+          <p>{taskData.description}</p>
+          <hr />
+
           <input type="checkbox" checked={taskData.completed} onChange={() => toggleComplete(taskData)} />
           <label>completed?</label>
         </div>
-        <button onClick={() => handleDelete(taskData._id)} className={styles.delete_button}>
-          X
-        </button>
         <button onClick={() => handleOpenModal()} className={`${styles.edit_button} primary`}>
           Edit
         </button>
