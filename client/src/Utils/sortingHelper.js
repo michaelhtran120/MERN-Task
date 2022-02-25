@@ -15,3 +15,8 @@ export const sortByDueDateAsc = (tasks) => {
   sortedTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
   return sortedTasks;
 };
+export const sortByDueDateDesc = (tasks) => {
+  const sortedTasks = [...tasks];
+  sortedTasks.sort((a, b) => new Date(b.dueDate) - new Date(a.dueDate));
+  return sortedTasks;
+};

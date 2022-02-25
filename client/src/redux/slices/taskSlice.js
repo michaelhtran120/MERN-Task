@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-import { sortByCreated, sortByUpdated } from "../../Utils/sortingHelper";
+import { sortByCreated, sortByUpdated, sortByDueDateAsc, sortByDueDateDesc } from "../../Utils/sortingHelper";
 
 const API_URL = "http://localhost:5001/api/tasks/";
 
@@ -127,6 +127,12 @@ export const taskSlice = createSlice({
     sortByUpdatedDate: (state) => {
       state.tasks = sortByUpdated(state.tasks);
     },
+    sortByDueDateAscAction: (state) => {
+      state.tasks = sortByDueDateAsc(state.tasks);
+    },
+    sortByDueDateDescAction: (state) => {
+      state.tasks = sortByDueDateDesc(state.tasks);
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -213,6 +219,6 @@ export const taskSlice = createSlice({
   },
 });
 
-export const { reset, sortByCreatedDate, sortByUpdatedDate } = taskSlice.actions;
+export const { reset, sortByCreatedDate, sortByUpdatedDate, sortByDueDateAscAction, sortByDueDateDescAction } = taskSlice.actions;
 
 export default taskSlice.reducer;

@@ -8,7 +8,7 @@ import TaskForm from "../../components/Forms/AddTaskForm/TaskForm";
 import { renderTasks } from "../../components/Task/Task";
 
 // Redux Imports
-import { getTask, sortByCreatedDate, sortByUpdatedDate } from "../../redux/slices/taskSlice";
+import { getTask, sortByDueDateAscAction, sortByDueDateDescAction } from "../../redux/slices/taskSlice";
 
 // Style Imports
 import styles from "./Dashboard.module.css";
@@ -34,11 +34,11 @@ function Dashboard() {
       <div>
         <TaskForm />
         <div className={styles.button_container}>
-          <button className="primary" onClick={() => dispatch(sortByCreatedDate())}>
-            Sort by created date
+          <button className="primary" onClick={() => dispatch(sortByDueDateAscAction())}>
+            Sort by due date (Ascending)
           </button>
-          <button className="primary" onClick={() => dispatch(sortByUpdatedDate())}>
-            Sort by updated date
+          <button className="primary" onClick={() => dispatch(sortByDueDateDescAction())}>
+            Sort by due date (Descending)
           </button>
         </div>
         {isLoading ? null : renderTasks(tasks)}
