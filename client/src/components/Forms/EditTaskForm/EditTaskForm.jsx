@@ -32,8 +32,8 @@ function EditTaskForm({ taskData, handleCloseModal }) {
       ...inputs,
       _id: taskData._id,
     };
-    console.log(updatedData);
-    // dispatch(updateTask(updatedData))
+
+    dispatch(updateTask(updatedData));
   };
 
   return (

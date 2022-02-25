@@ -79,7 +79,7 @@ export const toggleTaskComplete = createAsyncThunk("task/toggleTaskComplete", as
   }
 });
 
-export const updateTask = createAsyncThunk("task/updateTask", async(taskData, thunkAPI)=>{
+export const updateTask = createAsyncThunk("task/updateTask", async (taskData, thunkAPI) => {
   try {
     const token = thunkAPI.getState().auth.user.token;
     const config = {
@@ -88,12 +88,13 @@ export const updateTask = createAsyncThunk("task/updateTask", async(taskData, th
       },
     };
 
-    const response = axios.put(`${API_URL}${taskData._id}`, taskData, config);
+    const response = await axios.put(`${API_URL}${taskData._id}`, taskData, config);
     console.log(response);
+    return response.data;
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-})
+});
 
 export const deleteTask = createAsyncThunk("task/deleteTask", async (taskId, thunkAPI) => {
   try {
@@ -129,6 +130,7 @@ export const taskSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+    // Retrieve Task
       .addCase(getTask.pending, (state) => {
         state.isLoading = true;
         return state;
@@ -144,6 +146,7 @@ export const taskSlice = createSlice({
         state.errorMessage = action.payload;
         return state;
       })
+    // Add Task
       .addCase(addTask.pending, (state) => {
         state.isLoading = true;
         return state;
@@ -159,6 +162,7 @@ export const taskSlice = createSlice({
         state.errorMessage = action.payload;
         return state;
       })
+    // Toggle Complete
       .addCase(toggleTaskComplete.pending, (state) => {
         state.isLoading = true;
         return state;
@@ -174,6 +178,23 @@ export const taskSlice = createSlice({
         state.errorMessage = action.payload;
         return state;
       })
+      // Update Task
+      .addCase(updateTask.pending, (state) => {
+        state.isLoading = true;
+        return state;
+      })
+      .addCase(updateTask.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = "";
+        state.tasks = action.payload;
+        return state;
+      })
+      .addCase(updateTask.rejected, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = action.payload;
+        return state;
+      })
+      // Delete Task
       .addCase(deleteTask.pending, (state) => {
         state.isLoading = true;
         return state;
