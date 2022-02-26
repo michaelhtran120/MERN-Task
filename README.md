@@ -1,6 +1,9 @@
 # MERN Stack Task Manager
 
-Project geared towards practicing my knowledge in Redux and building a REST API using Node.js/Express with MongoDB.
+[Live Site](https://mern-stack-task-manager.herokuapp.com/)
+
+
+Project geared towards practicing my knowledge in Redux and building a REST API using Node.js/Express with MongoDB. Was deployed on Heroku.
 
 The scale of this project did not require the use of a state management library, but I heard some great things about Redux Toolkit. I wanted to practice implementing Redux, but also learn something new at the same time. 
 
