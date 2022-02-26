@@ -43,9 +43,9 @@ function Task({ taskData }) {
           <header className={styles.task_header}>
             <h3>{taskData.title}</h3>
             <span className={styles.due_date}>
-            <strong>Due: </strong>
-            {taskData.dueDate ? dateFormatter(taskData.dueDate) : "No due date"}
-          </span> 
+              <strong>Due: </strong>
+              {taskData.dueDate ? dateFormatter(taskData.dueDate) : "No due date"}
+            </span>
           </header>
           <hr />
           <p>{taskData.description}</p>
@@ -64,10 +64,14 @@ function Task({ taskData }) {
 }
 
 export const renderTasks = (taskArr) => {
+  console.log(taskArr);
+  console.log(typeof taskArr);
+
   if (typeof taskArr === "object" && taskArr.length === 0) {
     return <h4>You currently have no tasks. Please fill out the above form</h4>;
   }
-  return taskArr.map((task) => {
-    return <Task key={task._id} taskData={task} />;
-  });
+  if (typeof taskArr === "object" && taskArr.length > 0)
+    return taskArr.map((task) => {
+      return <Task key={task._id} taskData={task} />;
+    });
 };

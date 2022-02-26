@@ -23,7 +23,7 @@ export const getTask = createAsyncThunk("task/getTask", async (_, thunkAPI) => {
     return response.data;
   } catch (err) {
     console.log(err);
-    // return thunkAPI.rejectWithValue(err)
+    return thunkAPI.rejectWithValue(err);
   }
 });
 
@@ -41,7 +41,7 @@ export const addTask = createAsyncThunk("task/addTask", async (taskData, thunkAP
     console.log(err);
     console.log(err.toJSON());
     console.log(err.message);
-    // return thunkAPI.rejectWithValue(err)
+    return thunkAPI.rejectWithValue(err)
   }
 });
 
@@ -75,7 +75,7 @@ export const toggleTaskComplete = createAsyncThunk("task/toggleTaskComplete", as
     console.log(err);
     console.log(err.toJSON());
     console.log(err.message);
-    // return thunkAPI.rejectWithValue(err)
+    return thunkAPI.rejectWithValue(err)
   }
 });
 
@@ -132,11 +132,11 @@ export const taskSlice = createSlice({
     },
     sortByDueDateDescAction: (state) => {
       state.tasks = sortByDueDateDesc(state.tasks);
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
-    // Retrieve Task
+      // Retrieve Task
       .addCase(getTask.pending, (state) => {
         state.isLoading = true;
         return state;
@@ -152,7 +152,7 @@ export const taskSlice = createSlice({
         state.errorMessage = action.payload;
         return state;
       })
-    // Add Task
+      // Add Task
       .addCase(addTask.pending, (state) => {
         state.isLoading = true;
         return state;
@@ -168,7 +168,7 @@ export const taskSlice = createSlice({
         state.errorMessage = action.payload;
         return state;
       })
-    // Toggle Complete
+      // Toggle Complete
       .addCase(toggleTaskComplete.pending, (state) => {
         state.isLoading = true;
         return state;
