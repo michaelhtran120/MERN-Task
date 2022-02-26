@@ -64,7 +64,7 @@ function Task({ taskData }) {
 }
 
 export const renderTasks = (taskArr) => {
-  if (taskArr.length === 0) {
+  if (typeof taskArr === "object" && taskArr.length === 0) {
     return <h4>You currently have no tasks. Please fill out the above form</h4>;
   }
   return taskArr.map((task) => {

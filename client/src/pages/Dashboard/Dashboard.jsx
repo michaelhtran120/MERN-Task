@@ -18,6 +18,7 @@ function Dashboard() {
   const { tasks, isLoading, errorMessage } = useSelector((state) => state.tasks);
 
   const dispatch = useDispatch();
+  console.log(tasks);
 
   useEffect(() => {
     dispatch(getTask());
