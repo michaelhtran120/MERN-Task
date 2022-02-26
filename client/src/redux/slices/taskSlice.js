@@ -3,7 +3,7 @@ import axios from "axios";
 
 import { sortByCreated, sortByUpdated, sortByDueDateAsc, sortByDueDateDesc } from "../../Utils/sortingHelper";
 
-const API_URL = "http://localhost:5001/api/tasks/";
+const API_URL = "/api/tasks/";
 
 const initialState = {
   tasks: [],
